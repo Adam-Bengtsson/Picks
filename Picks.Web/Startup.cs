@@ -35,7 +35,7 @@ namespace Picks.Web
             }
 
             app.UseStaticFiles();
-            app.UseSession();
+            //app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
