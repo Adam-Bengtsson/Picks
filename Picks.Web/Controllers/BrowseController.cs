@@ -8,7 +8,7 @@ namespace Picks.Web.Controllers
 {
     public class BrowseController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Browse()
         {
             return View();
         }

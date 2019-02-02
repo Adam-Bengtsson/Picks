@@ -8,7 +8,7 @@ namespace Picks.Web.Controllers
 {
     public class UploadController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Upload()
         {
             return View();
         }

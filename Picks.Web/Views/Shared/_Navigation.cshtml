@@ -10,19 +10,19 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString().Equals("Browse", StringComparison.InvariantCultureIgnoreCase) ? "active" : "")">
-                    <a class="nav-link" asp-controller="Browse" asp-action="index">
+                    <a class="nav-link" asp-controller="Browse" asp-action="Browse">
                         <i class="fas fa-eye"></i>
                         Browse
                     </a>
                 </li>
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString().Equals("Upload", StringComparison.InvariantCultureIgnoreCase) ? "active" : "")">
-                    <a class="nav-link" asp-controller="Upload" asp-action="index">
+                    <a class="nav-link" asp-controller="Upload" asp-action="Upload">
                         <i class="fas fa-upload"></i>
                         Upload
                     </a>
                 </li>
             </ul>
-            <a class="nav-link text-white" asp-controller="Basket" asp-action="index">
+            <a class="nav-link text-white" asp-controller="Basket" asp-action="Basket">
                 <i class="fas fa-shopping-cart"></i>
                 Basket <span class="badge badge-pill badge-primary">1</span>
             </a>
