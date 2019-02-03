@@ -1,13 +1,30 @@
 ﻿@model BrowseViewModel
 @{
     ViewData["Title"] = "Browse and download pictures!";
+    var last = Model.Categories.Last();
 }
-<label>Select category:</label>
-<select id="Select1" class="form-control">
-    <option>xxx</option>
-</select>
+<label>Select category:</label><br />
+<a href="/">All |</a>
+@foreach (var category in Model.Categories)
+{
+    if (category.Equals(last))
+    {
+        <a asp-route-categoryName="@category.Name">@category.Name</a>
+    }
+    else
+    {
+        <a asp-route-categoryName="@category.Name">@category.Name</a><span> |</span>
+    }
+}
 <hr />
-<h5>Recent pictures:</h5>
+@if (Model.Pictures.Count() == 0)
+{
+    <h5>There are no pictures in this category</h5>
+}
+else
+{
+    <h5>Recent pictures:</h5>
+}
 <div class="row">
     @foreach (var picture in Model.Pictures)
     {
@@ -27,7 +44,7 @@
                         <hr />
                         <img class="img-fluid" src="~/pictures/@picture.FileName" /><br />
                         <b>Category: </b>@Model.Categories.Where(x => x.Id.Equals(picture.CategoryId)).SingleOrDefault()?.Name<br />
-                        <b>Tags:</b> yyy<br />
+                        <b>Tags:</b> @picture.Tags<br />
                         <b>Exif: </b>zzz
                     </div>
                 </div>

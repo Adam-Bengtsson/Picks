@@ -17,17 +17,26 @@ namespace Picks.Web.Controllers
             _pictureRepository = pictureRepo;
         }
 
-        public IActionResult Browse()
+        public IActionResult Browse(string categoryName)
         {
-            //var pictures = _pictureRepository.GetAllPictures();
-
-            var vm = new BrowseViewModel
+            if (categoryName == null)
             {
-                Categories = _pictureRepository.GetAllCategories(),
-                Pictures = _pictureRepository.GetAllPictures()
-            };
-            return View(vm);
-
+                var vm = new BrowseViewModel
+                {
+                    Categories = _pictureRepository.GetAllCategories().OrderBy(x => x.Name),
+                    Pictures = _pictureRepository.GetAllPictures().OrderByDescending(x => x.UploadDate)
+                };
+                return View(vm);
+            }
+            else
+            {
+                var vm = new BrowseViewModel
+                {
+                    Categories = _pictureRepository.GetAllCategories().OrderBy(x => x.Name),
+                    Pictures = _pictureRepository.GetAllPictures().Where(x => x.Category.Name == categoryName).OrderByDescending(x => x.UploadDate)
+                };
+                return View(vm);
+            }
         }
     }
 }
