@@ -1,4 +1,4 @@
-﻿
+﻿@model BrowseViewModel
 @{
     ViewData["Title"] = "Browse and download pictures!";
 }
@@ -9,70 +9,29 @@
 <hr />
 <h5>Recent pictures:</h5>
 <div class="row">
-    <div class="col-md text-center">
-        <a data-toggle="modal" data-target="#myModal"><img class="img-fluid" src="~/img/image.jpg" /></a>
-        <br /><br />
-        <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-        <br /><br />
-    </div>
-    <div class="col-md text-center">
-        <a data-toggle="modal" data-target="#myModal"><img class="img-fluid" src="~/img/image.jpg" /></a>
-        <br /><br />
-        <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-        <br /><br />
-    </div>
-    <div class="col-md text-center">
-        <a data-toggle="modal" data-target="#myModal"><img class="img-fluid" src="~/img/image.jpg" /></a>
-        <br /><br />
-        <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-        <br /><br />
-    </div>
-</div>
-<div class="row">
-    <div class="col-md text-center">
-        <a data-toggle="modal" data-target="#myModal"><img class="img-fluid" src="~/img/image.jpg" /></a>
-        <br /><br />
-        <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-        <br /><br />
-    </div>
-    <div class="col-md text-center">
-        <a data-toggle="modal" data-target="#myModal"><img class="img-fluid" src="~/img/image.jpg" /></a>
-        <br /><br />
-        <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-        <br /><br />
-    </div>
-    <div class="col-md text-center">
-        <a data-toggle="modal" data-target="#myModal"><img class="img-fluid" src="~/img/image.jpg" /></a>
-        <br /><br />
-        <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-        <br /><br />
-    </div>
-</div>
-
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-exclamation-circle"></i> Report</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
-                <hr />
-                <img class="img-fluid" src="~/img/image.jpg" />
-                <br />
-                <b>Category: </b>xxx
-                <br />
-                <b>Tags:</b> yyy
-                <br />
-                <b>Exif: </b>zzz
-            </div>
-
+    @foreach (var picture in Model.Pictures)
+    {
+        <div class="col-md-4 text-center">
+            <a data-toggle="modal" href="#p_@picture.Id"><img class="img-fluid" src="~/pictures/@picture.FileName" /></a><br /><br />
+            <a class="btn btn-success" href="~/pictures/@picture.FileName" download><i class="fas fa-download"></i> Download</a>
+            <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button><br /><br />
         </div>
-    </div>
+        <div class="modal fade" id="p_@picture.Id">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <a class="btn btn-success" href="~/pictures/@picture.FileName" download><i class="fas fa-download"></i> Download</a>
+                        <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
+                        <button type="button" class="btn btn-danger"><i class="fas fa-exclamation-circle"></i> Report</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
+                        <hr />
+                        <img class="img-fluid" src="~/pictures/@picture.FileName" /><br />
+                        <b>Category: </b>@Model.Categories.Where(x => x.Id.Equals(picture.CategoryId)).SingleOrDefault()?.Name<br />
+                        <b>Tags:</b> yyy<br />
+                        <b>Exif: </b>zzz
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

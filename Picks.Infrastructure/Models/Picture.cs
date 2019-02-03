@@ -13,7 +13,7 @@ namespace Picks.Infrastructure.Models
         public DateTime UploadDate { get; set; }
         public string Tags { get; set; }
 
-        [Required(ErrorMessage = "You must select a category for the picture")]
+        //[Required(ErrorMessage = "You must select a category for the picture")]
         public Guid CategoryId { get; set; }
         public virtual Category Category { get; set; }
     }

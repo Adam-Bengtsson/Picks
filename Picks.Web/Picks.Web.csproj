@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Picks.Infrastructure\Picks.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\pictures\" />
+  </ItemGroup>
+
 </Project>

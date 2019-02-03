@@ -17,16 +17,16 @@ namespace Picks.Web
 {
     public class Startup
     {
-        IConfiguration _configuration;
+        IConfiguration _config;
 
         public Startup(IConfiguration conf)
         {
-            _configuration = conf;
+            _config = conf;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var conn = _configuration.GetConnectionString("Picks");
+            var conn = _config.GetConnectionString("Picks");
 
             services.AddMvc();
 
@@ -34,7 +34,7 @@ namespace Picks.Web
 
             services.AddTransient<IPictureRepository, PictureRepository>();
 
-            services.Configure<CustomAppSettings>(_configuration.GetSection("CustomAppSettings"));
+            services.Configure<CustomAppSettings>(_config.GetSection("CustomAppSettings"));
 
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         }

@@ -1,37 +1,40 @@
-﻿
+﻿@model UploadViewModel
 @{
     ViewData["Title"] = "Upload pictures!";
 }
-<div class="row">
-    <div class="col-md">
-        <label>Select category:</label>
-        <select id="Select1" class="form-control">
-            <option>xxx</option>
-        </select>
+<form asp-action="UploadPictures" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md">
+            <label>Select category:</label>
+            <select asp-for="Picture.CategoryId" asp-items="Model.Categories" class="form-control" required></select>
+        </div>
+        @*<div class="col-md">
+                <form asp-action="CreateCategory" method="post">
+                    <label>Create new category:</label>
+                    <div class="input-group mb-3">
+                        <input asp-for="Category.Name" type="text" class="form-control" placeholder="Category name">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" id="button-addon2">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>*@
     </div>
-    <div class="col-md">
-        <label>Create category:</label>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Category name" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button" id="button-addon2">Create</button>
-            </div>
+    <label>Upload pictures:</label>
+    @*<form asp-action="UploadPictures" method="post" enctype="multipart/form-data">*@
+    <div class="input-group mb-3">
+        <div class="custom-file">
+            <input type="file" name="apa" class="custom-file-input" id="inputGroupFile" multiple>
+            <label class="custom-file-label" for="inputGroupFile">Choose files</label>
         </div>
     </div>
-</div>
-<label for="exampleFormControlTextarea1">Upload pictures:</label>
-<div class="input-group mb-3">
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" multiple>
-        <label class="custom-file-label" for="inputGroupFile01">Choose files</label>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Tags:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
     </div>
-</div>
-<div class="form-group">
-    <label for="exampleFormControlTextarea1">Tags:</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-</div>
-<div class="form-group">
-    <label for="exampleFormControlTextarea2">Exif:</label>
-    <textarea class="form-control" id="exampleFormControlTextarea2" rows="2"></textarea>
-</div>
-<button type="button" class="btn btn-primary">Save & upload pictures</button>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea2">Exif:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea2" rows="2"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Save & upload pictures</button>
+</form>
