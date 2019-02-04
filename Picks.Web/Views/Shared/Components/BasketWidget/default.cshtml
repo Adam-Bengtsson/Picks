@@ -1,0 +1,12 @@
+﻿@model Basket
+@{
+    var AmountOfBasketRows = Model.BasketRows.Count();
+}
+<a class="nav-link text-white" asp-controller="Basket" asp-action="Basket">
+    <i class="fas fa-shopping-cart"></i>
+    Basket
+    @if (AmountOfBasketRows != 0)
+    {
+        <span class="badge badge-pill badge-primary">@Model.BasketRows.Count()</span>
+    }
+</a>

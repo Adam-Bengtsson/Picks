@@ -38,8 +38,6 @@ namespace Picks.Web.Controllers
             };
 
             return View(u);
-
-            //return View();
         }
 
         [HttpPost]

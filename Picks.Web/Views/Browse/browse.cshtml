@@ -28,11 +28,15 @@ else
 <div class="row">
     @foreach (var picture in Model.Pictures)
     {
-        <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center">
+        <form asp-action="AddToBasket" method="post">
             <a data-toggle="modal" href="#p_@picture.Id"><img class="img-fluid" src="~/pictures/@picture.FileName" /></a><br /><br />
             <a class="btn btn-success" href="~/pictures/@picture.FileName" download><i class="fas fa-download"></i> Download</a>
-            <button type="button" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button><br /><br />
-        </div>
+
+            <input type="hidden" name="pictureId" value="@picture.Id" />
+            <button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button><br /><br />
+        </form>
+    </div>
         <div class="modal fade" id="p_@picture.Id">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">

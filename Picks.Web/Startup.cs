@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Picks.Infrastructure;
 using Picks.Infrastructure.DataAccess;
+using Picks.Infrastructure.Models;
 using Picks.Infrastructure.Repositories;
 
 namespace Picks.Web
@@ -36,6 +37,16 @@ namespace Picks.Web
 
             services.Configure<CustomAppSettings>(_config.GetSection("CustomAppSettings"));
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped(f => BasketSession.GetBasket(f));
+
+            services.AddSession(opts =>
+            {
+                opts.Cookie.Name = "picks.io";
+                opts.IdleTimeout = TimeSpan.MaxValue;
+            });
+
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         }
 
@@ -48,7 +59,7 @@ namespace Picks.Web
             }
 
             app.UseStaticFiles();
-            //app.UseSession();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
