@@ -10,5 +10,6 @@ namespace Picks.Web.ViewModels
     {
         public IEnumerable<Picture> Pictures { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public Basket Basket { get; set; }
     }
 }

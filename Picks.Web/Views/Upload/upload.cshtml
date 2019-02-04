@@ -2,6 +2,14 @@
 @{
     ViewData["Title"] = "Upload pictures!";
 }
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success">@TempData["Success"]</p>
+}
+@if (TempData["Info"] != null)
+{
+    <p class="alert alert-info">@TempData["Info"]</p>
+}
 <form asp-action="CreateCategory" method="post">
     <div>
         <label>Create new category:</label>
@@ -21,7 +29,7 @@
     <label>Upload pictures:</label>
     <div class="input-group mb-3">
         <div class="custom-file">
-            <input type="file" name="apa" class="custom-file-input" id="inputGroupFile" multiple required>
+            <input type="file" name="apa" class="custom-file-input" id="inputGroupFile" accept="image/png, image/jpeg, image/jpg" multiple required>
             <label class="custom-file-label" for="inputGroupFile">Choose files</label>
         </div>
     </div>

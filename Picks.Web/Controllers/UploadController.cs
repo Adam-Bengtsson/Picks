@@ -28,7 +28,7 @@ namespace Picks.Web.Controllers
         {
             if (pictureRepo.Categories.Count() == 0)
             {
-                TempData["Info"] = "There are no categories";
+                TempData["Info"] = "There are no categories, please create one";
             }
 
             var u = new UploadViewModel
@@ -46,7 +46,7 @@ namespace Picks.Web.Controllers
             if (ModelState.IsValid)
             {
                 pictureRepo.SaveCategory(u.Category);
-                TempData["Success"] = $"Succé! Kategori \"{u.Category.Name}\" har lagts till";
+                TempData["Success"] = $"Success! The category \"{u.Category.Name}\" has been added";
                 return RedirectToAction(nameof(Upload));
             }
             else
@@ -59,10 +59,11 @@ namespace Picks.Web.Controllers
         public async Task<IActionResult> UploadPictures(UploadViewModel u)
         {
             var pictures = Request.Form.Files;
+            string[] formats = { ".jpg", ".png", ".jpeg" };
 
             foreach (var file in pictures)
             {
-                if (file.Length > 0)
+                if (formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase) == true))
                 {
                     var pictureGuid = Guid.NewGuid();
 
@@ -73,9 +74,15 @@ namespace Picks.Web.Controllers
                         u.Picture.FileName = pictureGuid + "-" + file.FileName;
                         u.Picture.CategoryId = u.Picture.CategoryId;
                         pictureRepo.SavePicture(u.Picture);
+                        TempData["Success"] = $"Success! The pictures have been added";
                     }
                 }
+                else
+                {
+                    TempData["Info"] = "You have used a non-allowed file type, please use .jpg, .jpeg or .png files only";
+                }
             }
+
             return RedirectToAction(nameof(Upload));
         }
 

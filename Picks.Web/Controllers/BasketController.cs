@@ -17,7 +17,6 @@ namespace Picks.Web.Controllers
         {
             _pictureRepository = pictureRepo;
             _basket = basketService;
-
         }
 
         public IActionResult Basket()

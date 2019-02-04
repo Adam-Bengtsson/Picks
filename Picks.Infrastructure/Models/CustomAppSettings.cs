@@ -6,7 +6,7 @@ namespace Picks.Infrastructure
     {
         public CustomAppSettings()
         {
-            // Ändra värdena i appsettings.json
+            // Change the values in appsettings.json
             SendGridApiKey = "LoremIpsum";
         }
 

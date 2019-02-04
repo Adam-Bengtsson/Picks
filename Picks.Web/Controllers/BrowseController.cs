@@ -18,7 +18,6 @@ namespace Picks.Web.Controllers
         {
             _pictureRepository = pictureRepo;
             _basket = basketService;
-
         }
 
         public IActionResult Browse(string categoryName)
@@ -28,7 +27,8 @@ namespace Picks.Web.Controllers
                 var vm = new BrowseViewModel
                 {
                     Categories = _pictureRepository.GetAllCategories().OrderBy(x => x.Name),
-                    Pictures = _pictureRepository.GetAllPictures().OrderByDescending(x => x.UploadDate)
+                    Pictures = _pictureRepository.GetAllPictures().OrderByDescending(x => x.UploadDate),
+                    Basket = _basket
                 };
                 return View(vm);
             }
@@ -37,7 +37,8 @@ namespace Picks.Web.Controllers
                 var vm = new BrowseViewModel
                 {
                     Categories = _pictureRepository.GetAllCategories().OrderBy(x => x.Name),
-                    Pictures = _pictureRepository.GetAllPictures().Where(x => x.Category.Name == categoryName).OrderByDescending(x => x.UploadDate)
+                    Pictures = _pictureRepository.GetAllPictures().Where(x => x.Category.Name == categoryName).OrderByDescending(x => x.UploadDate),
+                    Basket = _basket
                 };
                 return View(vm);
             }
