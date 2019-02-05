@@ -4,14 +4,21 @@
     var AmountOfBasketRows = Model.BasketRows.Count();
     var counter = 1;
 }
+@if (TempData["Success"] != null)
+{
+    <a class="btn btn-success" href="../pictures/pictures.zip" download><i class="fas fa-download"></i> Download zip of all pictures in basket</a><br /><br />
+}
 @if (AmountOfBasketRows == 0)
 {
     <h5>Sorry, there are no pictures in the basket</h5>
 }
 @if (AmountOfBasketRows > 1)
 {
-    <button type="button" class="btn btn-success"><i class="fas fa-download"></i> Download all pictures in basket</button>
-    <br /><br />
+
+    <form asp-action="DownloadZipOfPicturesInBasket" method="post">
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Create zip of all pictures in basket</button>
+        <br /><br />
+    </form>
 }
 @if (AmountOfBasketRows > 0)
 {

@@ -37,5 +37,14 @@ namespace Picks.Web.Controllers
 
             return RedirectToAction(nameof(Basket));
         }
+
+        public RedirectToActionResult DownloadZipOfPicturesInBasket()
+        {
+            _basket.DownloadZipOfPicturesInBasket();
+
+            TempData["Success"] = "Yes!";
+
+            return RedirectToAction(nameof(Basket));
+        }
     }
 }
