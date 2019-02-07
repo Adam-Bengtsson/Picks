@@ -29,6 +29,8 @@ namespace Picks.Web
         {
             var conn = _config.GetConnectionString("Picks");
 
+            services.Configure<AzureStorageConfig>(options => _config.GetSection("AzureStorageConfig").Bind(options));
+
             services.AddMvc();
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(conn, x => x.MigrationsAssembly("Picks.Web")));

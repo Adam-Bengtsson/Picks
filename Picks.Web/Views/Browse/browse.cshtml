@@ -22,7 +22,7 @@ else
     {
         <div class="col-md-4 text-center">
             <form asp-action="AddToBasket" method="post">
-                <a data-toggle="modal" href="#p_@picture.Id"><img class="img-fluid" src="~/pictures/@picture.FileName" /></a><br /><br />
+                <a data-toggle="modal" href="#p_@picture.Id"><img class="img-fluid" src="https://wu17pickscdn.azureedge.net/@picture.FileName" /></a><br /><br />
                 <a class="btn btn-success" href="~/pictures/@picture.FileName" download><i class="fas fa-download"></i> Download</a>
                 @if (Model.Basket.BasketRows.Any(x => x.Id == picture.Id))
                 {
@@ -41,7 +41,7 @@ else
                 <div class="modal-content">
                     <div class="modal-body">
                         <form asp-action="AddToBasket" method="post">
-                            <a class="btn btn-success" href="~/pictures/@picture.FileName" download><i class="fas fa-download"></i> Download</a>
+                            <a class="btn btn-success" href="https://wu17pickscdn.azureedge.net/@picture.FileName" download><i class="fas fa-download"></i> Download</a>
                             @if (Model.Basket.BasketRows.Any(x => x.Id == picture.Id))
                             {
                                 <i class="fas fa-check"></i><i> In basket</i>
