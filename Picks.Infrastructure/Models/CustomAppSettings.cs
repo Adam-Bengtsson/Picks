@@ -1,15 +1,15 @@
-﻿using System;
+﻿//using System;
 
-namespace Picks.Infrastructure
-{
-    public class CustomAppSettings
-    {
-        public CustomAppSettings()
-        {
-            // Change the values in appsettings.json
-            SendGridApiKey = "LoremIpsum";
-        }
+//namespace Picks.Infrastructure
+//{
+//    public class CustomAppSettings
+//    {
+//        public CustomAppSettings()
+//        {
+//            // Change the values in appsettings.json
+//            SendGridApiKey = "LoremIpsum";
+//        }
 
-        public string SendGridApiKey { get; set; }
-    }
-}
+//        public string SendGridApiKey { get; set; }
+//    }
+//}

@@ -20,9 +20,9 @@ namespace Picks.Web.Controllers
             _basket = basketService;
         }
 
-        public IActionResult Browse(string categoryName)
+        public IActionResult Browse(Guid categoryId)
         {
-            if (categoryName == null)
+            if (categoryId == Guid.Empty)
             {
                 var vm = new BrowseViewModel
                 {
@@ -37,7 +37,7 @@ namespace Picks.Web.Controllers
                 var vm = new BrowseViewModel
                 {
                     Categories = _pictureRepository.GetAllCategories().OrderBy(x => x.Name),
-                    Pictures = _pictureRepository.GetAllPictures().Where(x => x.Category.Name == categoryName).OrderByDescending(x => x.UploadDate),
+                    Pictures = _pictureRepository.GetAllPictures().Where(x => x.CategoryId == categoryId).OrderByDescending(x => x.UploadDate),
                     Basket = _basket
                 };
                 return View(vm);

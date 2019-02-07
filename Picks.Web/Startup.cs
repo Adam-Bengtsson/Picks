@@ -35,11 +35,16 @@ namespace Picks.Web
 
             services.AddTransient<IPictureRepository, PictureRepository>();
 
-            services.Configure<CustomAppSettings>(_config.GetSection("CustomAppSettings"));
+            //services.Configure<CustomAppSettings>(_config.GetSection("CustomAppSettings"));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped(f => BasketSession.GetBasket(f));
+
+            services.AddDistributedRedisCache(opt =>
+            {
+                opt.Configuration = _config.GetConnectionString("Redis");
+            });
 
             services.AddSession(opts =>
             {

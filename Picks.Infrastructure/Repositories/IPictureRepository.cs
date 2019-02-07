@@ -15,6 +15,7 @@ namespace Picks.Infrastructure.Repositories
         void SaveCategory(Category c);
         void SavePicture(Picture p);
 
+        //Task<IEnumerable<Picture>> GetAllPictures();
         IEnumerable<Picture> GetAllPictures();
         IEnumerable<Category> GetAllCategories();
     }

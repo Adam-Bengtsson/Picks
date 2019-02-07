@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /Picks.Web/wwwroot/pictures/pictures.zip
+/Picks.Web/Properties/PublishProfiles
