@@ -54,5 +54,24 @@ namespace Picks.Infrastructure.Models
         }
 
         public virtual IEnumerable<Picture> BasketRows => _basketRows;
+
+        //public virtual void DownloadZipOfPicturesInBasket()
+        //{
+        //    string zipFilePath = "wwwroot/pictures/pictures.zip";
+
+        //    if (File.Exists(zipFilePath))
+        //    {
+        //        File.Delete(zipFilePath);
+        //    }
+
+        //    using (ZipArchive archive = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
+        //    {
+        //        foreach (var pic in _basketRows)
+        //        {
+        //            string sourceFileName = "wwwroot/pictures/" + pic.FileName;
+        //            archive.CreateEntryFromFile(sourceFileName, pic.FileName);
+        //        }
+        //    }
+        //}
     }
 }

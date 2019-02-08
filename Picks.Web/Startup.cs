@@ -28,32 +28,22 @@ namespace Picks.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var conn = _config.GetConnectionString("Picks");
-
             services.Configure<AzureStorageConfig>(options => _config.GetSection("AzureStorageConfig").Bind(options));
-
+            services.Configure<CdnSettings>(options => _config.GetSection("CdnSettings").Bind(options));
             services.AddMvc();
-
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(conn, x => x.MigrationsAssembly("Picks.Web")));
-
             services.AddTransient<IPictureRepository, PictureRepository>();
-
-            //services.Configure<CustomAppSettings>(_config.GetSection("CustomAppSettings"));
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             services.AddScoped(f => BasketSession.GetBasket(f));
-
             services.AddDistributedRedisCache(opt =>
             {
                 opt.Configuration = _config.GetConnectionString("Redis");
             });
-
             services.AddSession(opts =>
             {
                 opts.Cookie.Name = "picks.io";
                 opts.IdleTimeout = TimeSpan.MaxValue;
             });
-
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         }
 
@@ -64,7 +54,6 @@ namespace Picks.Web
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
             }
-
             app.UseStaticFiles();
             app.UseSession();
             app.UseMvc(routes =>

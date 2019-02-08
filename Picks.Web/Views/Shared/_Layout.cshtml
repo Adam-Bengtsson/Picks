@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Picks.io - @ViewBag.Title</title>
-    <link rel="icon" type="image/x-icon" href="~/img/favicon/favicon.ico" />
-    <script src="~/js/site.min.js"></script>
-    <link href="~/css/site.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <web-root-path-or-cdn path="/img/favicon/favicon.ico" type="image/x-icon"></web-root-path-or-cdn>
+    <web-root-path-or-cdn path="/js/site.min.js" type="script"></web-root-path-or-cdn>
+    <web-root-path-or-cdn path="/css/site.min.css" type="stylesheet"></web-root-path-or-cdn>
 </head>
 <body class="bg-light">
     <partial name="_Navigation" />
@@ -18,6 +17,7 @@
             @RenderBody()
         </div>
     </div>
-    <script src="~/js/custom.min.js"></script>
+    <web-root-path-or-cdn path="/js/custom.min.js" type="script"></web-root-path-or-cdn>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </body>
 </html>

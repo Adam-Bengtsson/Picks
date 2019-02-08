@@ -8,6 +8,6 @@ namespace Picks.Infrastructure.Models
     {
         public string AccountName { get; set; }
         public string AccountKey { get; set; }
-        public string Connectionstring { get; set; }
+        public string BlobBaseUrl { get; set; }
     }
 }
