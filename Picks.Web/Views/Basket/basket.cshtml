@@ -42,11 +42,9 @@
                     <th class="align-middle" scope="row">@counter</th>
                     <td>
                         <blob-storage-path-or-cdn path="@row.FileName" type="img" class="img-fluid" width="100"></blob-storage-path-or-cdn><br />
-                        @*<img class="img-fluid" width="100" src="~/pictures/@row.FileName" />*@
                     </td>
                     <td class="align-middle">
                         <blob-storage-path-or-cdn path="@row.FileName" type="a" class="btn btn-success" download><i class="fas fa-download"></i> Download</blob-storage-path-or-cdn>
-                        @*<a class="btn btn-success" href="~/pictures/@row.FileName" download><i class="fas fa-download"></i> Download</a>*@
                     </td>
                     <td class="align-middle">
                         <form asp-action="RemoveFromBasket" method="post">

@@ -84,7 +84,7 @@ namespace Picks.Web.Controllers
                     }
 
                     u.Picture.Id = pictureGuid;
-                    u.Picture.FileName = "\\pictures\\" + pictureGuid + "-" + file.FileName;
+                    u.Picture.FileName = "/pictures/" + pictureGuid + "-" + file.FileName;
                     u.Picture.CategoryId = u.Picture.CategoryId;
                     pictureRepo.SavePicture(u.Picture);
                     TempData["Success"] = $"Success! The pictures have been added";
@@ -108,35 +108,5 @@ namespace Picks.Web.Controllers
                 }).ToList();
             return list;
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> UploadPictures(UploadViewModel u)
-        //{
-        //    var pictures = Request.Form.Files;
-        //    string[] formats = { ".jpg", ".png", ".jpeg" };
-
-        //    foreach (var file in pictures)
-        //    {
-        //        if (formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase) == true))
-        //        {
-        //            var pictureGuid = Guid.NewGuid();
-
-        //            using (var stream = new FileStream(_hostingEnvironment.WebRootPath + "\\pictures\\" + pictureGuid + "-" + file.FileName, FileMode.Create))
-        //            {
-        //                await file.CopyToAsync(stream);
-        //                u.Picture.Id = pictureGuid;
-        //                u.Picture.FileName = "\\pictures\\" + pictureGuid + "-" + file.FileName;
-        //                u.Picture.CategoryId = u.Picture.CategoryId;
-        //                pictureRepo.SavePicture(u.Picture);
-        //                TempData["Success"] = $"Success! The pictures have been added";
-        //            }
-        //        }
-        //        else
-        //        {
-        //            TempData["Info"] = "You have used a non-allowed file type, please use .jpg, .jpeg or .png files only";
-        //        }
-        //    }
-        //    return RedirectToAction(nameof(Upload));
-        //}
     }
 }

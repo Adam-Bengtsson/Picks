@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -34,7 +35,7 @@ namespace Picks.Infrastructure.Models
             _basketRows.Clear();
         }
 
-        public virtual void DownloadZipOfPicturesInBasket()
+        public virtual void DownloadZipOfPicturesInBasket(string EndpointStorageUrlOrBlobBaseUrl)
         {
             string zipFilePath = "wwwroot/pictures/pictures.zip";
 
@@ -47,31 +48,21 @@ namespace Picks.Infrastructure.Models
             {
                 foreach (var pic in _basketRows)
                 {
-                    string sourceFileName = "wwwroot/pictures/" + pic.FileName;
-                    archive.CreateEntryFromFile(sourceFileName, pic.FileName);
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile($"{EndpointStorageUrlOrBlobBaseUrl}{pic.FileName}", $"wwwroot{pic.FileName}");
+                    }
+                    /* Remove(0,10) is there to remove "/pictures/" in the beginning of every pic.FileName, without it the
+                    generated zip-file will contain two unnecessary folders before you reach the images */
+                    archive.CreateEntryFromFile($"wwwroot{pic.FileName}", pic.FileName.Remove(0,10));
+                    if (File.Exists($"wwwroot{pic.FileName}"))
+                    {
+                        File.Delete($"wwwroot{pic.FileName}");
+                    }
                 }
             }
         }
 
         public virtual IEnumerable<Picture> BasketRows => _basketRows;
-
-        //public virtual void DownloadZipOfPicturesInBasket()
-        //{
-        //    string zipFilePath = "wwwroot/pictures/pictures.zip";
-
-        //    if (File.Exists(zipFilePath))
-        //    {
-        //        File.Delete(zipFilePath);
-        //    }
-
-        //    using (ZipArchive archive = ZipFile.Open(zipFilePath, ZipArchiveMode.Create))
-        //    {
-        //        foreach (var pic in _basketRows)
-        //        {
-        //            string sourceFileName = "wwwroot/pictures/" + pic.FileName;
-        //            archive.CreateEntryFromFile(sourceFileName, pic.FileName);
-        //        }
-        //    }
-        //}
     }
 }

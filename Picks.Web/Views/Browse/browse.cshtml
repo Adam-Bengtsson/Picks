@@ -23,9 +23,7 @@ else
         <div class="col-md-4 text-center">
             <form asp-action="AddToBasket" method="post">
                 <a data-toggle="modal" href="#p_@picture.Id"><blob-storage-path-or-cdn path="@picture.FileName" type="img" class="img-fluid"></blob-storage-path-or-cdn></a><br /><br />
-                @*<a data-toggle="modal" href="#p_@picture.Id"><img class="img-fluid" src="https://wu17pickscdn.azureedge.net/@picture.FileName" /></a><br /><br />*@
                 <blob-storage-path-or-cdn path="@picture.FileName" type="a" class="btn btn-success" download><i class="fas fa-download"></i> Download</blob-storage-path-or-cdn>
-                @*<a class="btn btn-success" href="~/pictures/@picture.FileName" download><i class="fas fa-download"></i> Download</a>*@
                 @if (Model.Basket.BasketRows.Any(x => x.Id == picture.Id))
                 {
                     <i class="fas fa-check"></i><i> In basket</i>
@@ -44,7 +42,6 @@ else
                     <div class="modal-body">
                         <form asp-action="AddToBasket" method="post">
                             <blob-storage-path-or-cdn path="@picture.FileName" type="a" class="btn btn-success" download><i class="fas fa-download"></i> Download</blob-storage-path-or-cdn>
-                            @*<a class="btn btn-success" href="https://wu17pickscdn.azureedge.net/@picture.FileName" download><i class="fas fa-download"></i> Download</a>*@
                             @if (Model.Basket.BasketRows.Any(x => x.Id == picture.Id))
                             {
                                 <i class="fas fa-check"></i><i> In basket</i>
@@ -54,12 +51,10 @@ else
                                 <input type="hidden" name="pictureId" value="@picture.Id" />
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Add to basket</button>
                             }
-                            <button type="button" class="btn btn-danger"><i class="fas fa-exclamation-circle"></i> Report</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
                         </form>
                         <hr />
                         <blob-storage-path-or-cdn path="@picture.FileName" type="img" class="img-fluid"></blob-storage-path-or-cdn><br />
-                        @*<img class="img-fluid" src="~/pictures/@picture.FileName" /><br />*@
                         <b>Category: </b>@Model.Categories.Where(x => x.Id.Equals(picture.CategoryId)).SingleOrDefault()?.Name<br />
                         <b>Tags:</b> @picture.Tags<br />
                     </div>
